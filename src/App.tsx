@@ -3,10 +3,13 @@ import CommandLine from "./component/CommandLine";
 import { changeDirectory, Command } from "./utils/command";
 import { CommandError } from "./utils/commandError";
 import ErrorLine from "./component/ErrorLine";
+import { listDirectory } from "./utils/api";
+import { LSOutput } from "./utils/lsOutput";
+import LSOutputLine from "./component/LSLine";
 
 function App() {
   const [terminalRecords, setTerminalRecords] = useState<
-    (Command | CommandError)[]
+    (Command | LSOutput | CommandError)[]
   >([new Command()]);
   const [path, setPath] = useState("~");
 
@@ -16,7 +19,7 @@ function App() {
     const commandSplitted = newCommand.split(" ");
     const command = commandSplitted[0];
     const args = commandSplitted.slice(1);
-    const commandOuputs: CommandError[] = [];
+    const commandOuputs: (LSOutput | CommandError)[] = [];
     switch (command.toLowerCase()) {
       case "cd": {
         if (args.length > 0) {
@@ -32,6 +35,18 @@ function App() {
         }
         break;
       }
+      case "ls": {
+        try {
+          const result = await listDirectory(currentPath);
+          commandOuputs.push(result);
+        } catch (e) {
+          console.log(e);
+          commandOuputs.push(
+            new CommandError(command, "Unexpected error occurred")
+          );
+        }
+        break;
+      }
       default:
         commandOuputs.push(new CommandError(command, "command not found"));
         break;
@@ -41,7 +56,7 @@ function App() {
       if (prevCommands.length === 0) return prevCommands;
       const newCommands = [...prevCommands];
       const lastCommand = newCommands[newCommands.length - 1];
-      lastCommand.command = newCommand;
+      if (lastCommand instanceof Command) lastCommand.command = newCommand;
       newCommands.push(...commandOuputs);
       newCommands.push(new Command(currentPath, ""));
       return newCommands;
@@ -53,6 +68,8 @@ function App() {
       {terminalRecords.map((record, i) =>
         record instanceof Command ? (
           <CommandLine command={record} commandSave={commandSave} key={i} />
+        ) : record instanceof LSOutput ? (
+          <LSOutputLine lsOutput={record} />
         ) : (
           <ErrorLine commandError={record} key={i} />
         )

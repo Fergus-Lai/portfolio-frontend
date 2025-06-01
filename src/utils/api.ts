@@ -1,3 +1,5 @@
+import { LSOutput } from "./lsOutput";
+
 const URL =
   process.env.NODE_ENV == "production"
     ? "https://api.fergus-lai.dev/"
@@ -12,4 +14,15 @@ export const checkDirectory = async (path: string) => {
       )
     ).json()
   ).result;
+};
+
+export const listDirectory = async (path: string) => {
+  const queryPath = path.slice(1);
+  return new LSOutput(
+    await (
+      await fetch(
+        URL + "listDirectory/" + (queryPath.length == 0 ? "~" : queryPath)
+      )
+    ).json()
+  );
 };
