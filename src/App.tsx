@@ -5,7 +5,8 @@ import { changeDirectory, Command } from "./utils/command";
 function App() {
   const [commands, setCommands] = useState([new Command()]);
   const [path, setPath] = useState("~");
-  const commandSave = (newCommand: string) => {
+
+  const commandSave = async (newCommand: string) => {
     let currentPath = path;
 
     const commandSplitted = newCommand.split(" ");
@@ -15,8 +16,12 @@ function App() {
       case "cd":
         {
           if (args.length > 0) {
-            currentPath = changeDirectory(currentPath, args[0]);
-            setPath(currentPath);
+            try {
+              currentPath = await changeDirectory(currentPath, args[0]);
+              setPath(currentPath);
+            } catch (error) {
+              console.log("No Such Path");
+            }
           }
         }
         break;
