@@ -13,11 +13,11 @@ export default function LSOutputLine({ lsOutput }: Props) {
       {outputs.map((element, i) =>
         files.has(element) ? (
           <div className="text-white" key={i}>
-            {element}/
+            {element}
           </div>
         ) : (
           <div className="text-terminal-blue" key={i}>
-            {element}
+            {element}/
           </div>
         )
       )}
