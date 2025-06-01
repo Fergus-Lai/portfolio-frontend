@@ -13,6 +13,8 @@ export function changeDirectory(currentPath: string, newPath: string) {
     if (element == "..") {
       currentPath = currentPath.split("/").slice(0, -1).join("/");
       if (currentPath == "") currentPath = "~";
+    } else if (element == "~") {
+      currentPath = "~";
     } else if (element != ".") {
       // TODO: Check Path Valid
       currentPath =
