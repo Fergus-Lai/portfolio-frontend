@@ -7,3 +7,5 @@ export class Command {
     this.command = command;
   }
 }
+
+export const cdRegex: RegExp = /(?:cd\s)(.*)/;
