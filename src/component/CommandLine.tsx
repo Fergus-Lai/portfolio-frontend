@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Command } from "../command";
+import type { Command } from "../utils/command";
 
 interface Props {
   command: Command;

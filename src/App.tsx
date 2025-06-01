@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CommandLine from "./component/CommandLine";
-import { changeDirectory, Command } from "./command";
+import { changeDirectory, Command } from "./utils/command";
 
 function App() {
   const [commands, setCommands] = useState([new Command()]);
