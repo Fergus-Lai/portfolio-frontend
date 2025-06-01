@@ -34,6 +34,7 @@ function App() {
         }
         break;
       default:
+        commandOuputs.push(new CommandError(command, "command not found"));
         break;
     }
 
