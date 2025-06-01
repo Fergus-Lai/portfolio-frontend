@@ -18,21 +18,20 @@ function App() {
     const args = commandSplitted.slice(1);
     const commandOuputs: CommandError[] = [];
     switch (command.toLowerCase()) {
-      case "cd":
-        {
-          if (args.length > 0) {
-            try {
-              currentPath = await changeDirectory(currentPath, args[0]);
-              setPath(currentPath);
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            } catch (_) {
-              commandOuputs.push(
-                new CommandError(command, "No such file or directory")
-              );
-            }
+      case "cd": {
+        if (args.length > 0) {
+          try {
+            currentPath = await changeDirectory(currentPath, args[0]);
+            setPath(currentPath);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          } catch (_) {
+            commandOuputs.push(
+              new CommandError(command, "No such file or directory")
+            );
           }
         }
         break;
+      }
       default:
         commandOuputs.push(new CommandError(command, "command not found"));
         break;
