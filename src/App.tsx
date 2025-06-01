@@ -1,26 +1,29 @@
 import { useState } from "react";
-import CommandLine from "./component/commandline";
-import { cdRegex, Command } from "./command";
+import CommandLine from "./component/CommandLine";
+import { changeDirectory, Command } from "./command";
 
 function App() {
   const [commands, setCommands] = useState([new Command()]);
   const [path, setPath] = useState("~");
   const commandSave = (newCommand: string) => {
-    const newPath = newCommand.match(cdRegex);
     let currentPath = path;
-    if (newPath) {
-      if (newPath[1] == "..") {
-        currentPath = currentPath.split("/").slice(0, -1).join("/");
-        if (currentPath == "") currentPath = "~";
-      } else {
-        // TODO: Check Path Valid
-        currentPath =
-          path == "~"
-            ? "/" + newPath[1].replace("./", "")
-            : path + "/" + newPath[1].replace("./", "");
-      }
-      setPath(currentPath);
+
+    const commandSplitted = newCommand.split(" ");
+    const command = commandSplitted[0];
+    const args = commandSplitted.slice(1);
+    switch (command.toLowerCase()) {
+      case "cd":
+        {
+          if (args.length > 0) {
+            currentPath = changeDirectory(currentPath, args[0]);
+            setPath(currentPath);
+          }
+        }
+        break;
+      default:
+        break;
     }
+
     setCommands((prevCommands) => {
       if (prevCommands.length === 0) return prevCommands;
       const newCommands = [...prevCommands];
