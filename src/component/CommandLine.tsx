@@ -15,10 +15,12 @@ export default function CommandLine({ command, commandSave }: Props) {
       <p className="text-white">:</p>
       <p className="text-terminal-blue">{command.path}</p>
       <p className="text-white pr-2">$</p>
-      <textarea
+      <input
+        autoFocus={!disabled}
         className="focus:outline-0 text-white break-words flex-auto resize-none"
         disabled={disabled}
         value={commandState}
+        type="text"
         onChange={(e) => {
           setCommandState(e.target.value);
         }}
