@@ -75,6 +75,8 @@ function App() {
         setCommandHistory([]);
         return;
       }
+      case "":
+        break;
       default:
         commandOuputs.push(new CommandError(command, "command not found"));
         break;
