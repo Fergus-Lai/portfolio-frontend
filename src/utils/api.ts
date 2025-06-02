@@ -1,3 +1,5 @@
+import { CatOutput } from "./catOuput";
+import { CommandError } from "./commandError";
 import { LSOutput } from "./lsOutput";
 
 const URL =
@@ -28,8 +30,17 @@ export const listDirectory = async (path: string) => {
 };
 
 export const getFile = async (path: string) => {
-  const queryPath = path.slice(1);
-  return await (
-    await fetch(URL + "file/" + (queryPath.length == 0 ? "~" : queryPath))
-  ).text();
+  const queryPath = path.replace("~", "").slice(1);
+  const response = await fetch(
+    URL + "file/" + (queryPath.length == 0 ? "~" : queryPath)
+  );
+  if (!response.ok) {
+    return new CommandError(
+      "cat",
+      response.status == 404
+        ? `${queryPath}: No such file or directory`
+        : "Unknown error occurred"
+    );
+  }
+  return new CatOutput(await response.text());
 };

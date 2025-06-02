@@ -57,8 +57,7 @@ function App() {
         if (args.length > 0) {
           try {
             const filePath = currentPath + "/" + args[0].replace("./", "");
-            const result = await getFile(filePath);
-            commandOuputs.push(new CatOutput(result));
+            commandOuputs.push(await getFile(filePath));
           } catch (error) {
             console.log(error);
           }
