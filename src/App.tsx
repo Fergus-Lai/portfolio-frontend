@@ -97,7 +97,7 @@ function App() {
             key={i}
           />
         ) : record instanceof LSOutput ? (
-          <LSOutputLine lsOutput={record} />
+          <LSOutputLine lsOutput={record} key={i} />
         ) : record instanceof CatOutput ? (
           <CatLine content={record.content} key={i} />
         ) : (
