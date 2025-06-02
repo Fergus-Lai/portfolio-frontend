@@ -13,6 +13,8 @@ function App() {
   const [terminalRecords, setTerminalRecords] = useState<
     (Command | LSOutput | CommandError | CatOutput)[]
   >([new Command()]);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+
   const [path, setPath] = useState("~");
 
   const commandSave = async (newCommand: string) => {
@@ -22,6 +24,13 @@ function App() {
     const command = commandSplitted[0];
     const args = commandSplitted.slice(1);
     const commandOuputs: (LSOutput | CommandError | CatOutput)[] = [];
+
+    setCommandHistory((prevCommands) => {
+      const newCommands = [...prevCommands];
+      newCommands.push(newCommand);
+      return newCommands;
+    });
+
     switch (command.toLowerCase()) {
       case "cd": {
         if (args.length > 0) {
@@ -81,7 +90,12 @@ function App() {
     <main className="flex min-h-screen min-w-screen h-full w-full bg-terminal-purple flex-col pt-2">
       {terminalRecords.map((record, i) =>
         record instanceof Command ? (
-          <CommandLine command={record} commandSave={commandSave} key={i} />
+          <CommandLine
+            command={record}
+            commandSave={commandSave}
+            commands={commandHistory}
+            key={i}
+          />
         ) : record instanceof LSOutput ? (
           <LSOutputLine lsOutput={record} />
         ) : record instanceof CatOutput ? (
