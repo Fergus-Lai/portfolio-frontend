@@ -2,13 +2,18 @@ import { useEffect, useState } from "react";
 import type { Command } from "../utils/command";
 
 interface Props {
+  disabled: boolean;
   command: Command;
   commandSave: (newCommand: string) => void;
   commands: string[];
 }
 
-export default function CommandLine({ command, commandSave, commands }: Props) {
-  const [disabled, setDisabled] = useState(false);
+export default function CommandLine({
+  disabled,
+  command,
+  commandSave,
+  commands,
+}: Props) {
   const [commandState, setCommandState] = useState(command.command);
   const [commandHistoryIndex, setCommandHistoryindex] = useState(
     commands.length
@@ -33,14 +38,13 @@ export default function CommandLine({ command, commandSave, commands }: Props) {
         autoFocus={!disabled}
         className="focus:outline-0 text-white break-words flex-auto resize-none"
         disabled={disabled}
-        value={commandState}
+        value={commandState ?? ""}
         type="text"
         onChange={(e) => {
           setCommandState(e.target.value);
         }}
         onKeyDown={(e) => {
           if (e.key == "Enter") {
-            setDisabled(true);
             commandSave(commandState);
           }
           if (e.key == "ArrowUp") {

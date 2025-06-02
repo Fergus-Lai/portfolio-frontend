@@ -25,12 +25,6 @@ function App() {
     const args = commandSplitted.slice(1);
     const commandOuputs: (LSOutput | CommandError | CatOutput)[] = [];
 
-    setCommandHistory((prevCommands) => {
-      const newCommands = [...prevCommands];
-      newCommands.push(newCommand);
-      return newCommands;
-    });
-
     switch (command.toLowerCase()) {
       case "cd": {
         if (args.length > 0) {
@@ -70,10 +64,22 @@ function App() {
         }
         break;
       }
+      case "clear":
+      case "reset": {
+        setTerminalRecords([new Command(currentPath, "")]);
+        setCommandHistory([]);
+        return;
+      }
       default:
         commandOuputs.push(new CommandError(command, "command not found"));
         break;
     }
+
+    setCommandHistory((prevCommands) => {
+      const newCommands = [...prevCommands];
+      newCommands.push(newCommand);
+      return newCommands;
+    });
 
     setTerminalRecords((prevCommands) => {
       if (prevCommands.length === 0) return prevCommands;
@@ -85,12 +91,12 @@ function App() {
       return newCommands;
     });
   };
-
   return (
     <main className="flex min-h-screen min-w-screen h-full w-full bg-terminal-purple flex-col pt-2">
       {terminalRecords.map((record, i) =>
         record instanceof Command ? (
           <CommandLine
+            disabled={terminalRecords.length - 1 != i}
             command={record}
             commandSave={commandSave}
             commands={commandHistory}
