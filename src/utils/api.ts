@@ -26,3 +26,10 @@ export const listDirectory = async (path: string) => {
     ).json()
   );
 };
+
+export const getFile = async (path: string) => {
+  const queryPath = path.slice(1);
+  return await (
+    await fetch(URL + "file/" + (queryPath.length == 0 ? "~" : queryPath))
+  ).text();
+};

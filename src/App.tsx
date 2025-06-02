@@ -3,13 +3,15 @@ import CommandLine from "./component/CommandLine";
 import { changeDirectory, Command } from "./utils/command";
 import { CommandError } from "./utils/commandError";
 import ErrorLine from "./component/ErrorLine";
-import { listDirectory } from "./utils/api";
+import { getFile, listDirectory } from "./utils/api";
 import { LSOutput } from "./utils/lsOutput";
 import LSOutputLine from "./component/LSLine";
+import { CatOutput } from "./utils/catOuput";
+import CatLine from "./component/CatLine";
 
 function App() {
   const [terminalRecords, setTerminalRecords] = useState<
-    (Command | LSOutput | CommandError)[]
+    (Command | LSOutput | CommandError | CatOutput)[]
   >([new Command()]);
   const [path, setPath] = useState("~");
 
@@ -19,7 +21,7 @@ function App() {
     const commandSplitted = newCommand.split(" ");
     const command = commandSplitted[0];
     const args = commandSplitted.slice(1);
-    const commandOuputs: (LSOutput | CommandError)[] = [];
+    const commandOuputs: (LSOutput | CommandError | CatOutput)[] = [];
     switch (command.toLowerCase()) {
       case "cd": {
         if (args.length > 0) {
@@ -47,6 +49,18 @@ function App() {
         }
         break;
       }
+      case "cat": {
+        if (args.length > 0) {
+          try {
+            const filePath = currentPath + "/" + args[0].replace("./", "");
+            const result = await getFile(filePath);
+            commandOuputs.push(new CatOutput(result));
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        break;
+      }
       default:
         commandOuputs.push(new CommandError(command, "command not found"));
         break;
@@ -70,6 +84,8 @@ function App() {
           <CommandLine command={record} commandSave={commandSave} key={i} />
         ) : record instanceof LSOutput ? (
           <LSOutputLine lsOutput={record} />
+        ) : record instanceof CatOutput ? (
+          <CatLine content={record.content} key={i} />
         ) : (
           <ErrorLine commandError={record} key={i} />
         )
