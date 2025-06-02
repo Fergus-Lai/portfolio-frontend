@@ -54,12 +54,15 @@ function App() {
         break;
       }
       case "cat": {
-        if (args.length > 0) {
+        for (const arg of args) {
           try {
-            const filePath = currentPath + "/" + args[0].replace("./", "");
+            const filePath = currentPath + "/" + arg.replace("./", "");
             commandOuputs.push(await getFile(filePath));
           } catch (error) {
             console.log(error);
+            commandOuputs.push(
+              new CommandError(command, "Unexpected error occurred")
+            );
           }
         }
         break;
