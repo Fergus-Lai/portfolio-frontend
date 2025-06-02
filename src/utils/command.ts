@@ -10,6 +10,13 @@ export class Command {
   }
 }
 
+export class Help {
+  args: string;
+  constructor(args: string) {
+    this.args = args;
+  }
+}
+
 export async function changeDirectory(currentPath: string, newPath: string) {
   newPath.split("/").forEach((element) => {
     if (element == "..") {

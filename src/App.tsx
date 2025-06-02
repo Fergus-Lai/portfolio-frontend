@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CommandLine from "./component/CommandLine";
-import { changeDirectory, Command } from "./utils/command";
+import { changeDirectory, Command, Help } from "./utils/command";
 import { CommandError } from "./utils/commandError";
 import ErrorLine from "./component/ErrorLine";
 import { getFile, listDirectory } from "./utils/api";
@@ -8,10 +8,11 @@ import { LSOutput } from "./utils/lsOutput";
 import LSOutputLine from "./component/LSLine";
 import { CatOutput } from "./utils/catOuput";
 import CatLine from "./component/CatLine";
+import HelpLine from "./component/HelpLine";
 
 function App() {
   const [terminalRecords, setTerminalRecords] = useState<
-    (Command | LSOutput | CommandError | CatOutput)[]
+    (Command | LSOutput | CommandError | CatOutput | Help)[]
   >([new Command()]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
 
@@ -23,7 +24,7 @@ function App() {
     const commandSplitted = newCommand.split(" ");
     const command = commandSplitted[0];
     const args = commandSplitted.slice(1);
-    const commandOuputs: (LSOutput | CommandError | CatOutput)[] = [];
+    const commandOuputs: (LSOutput | CommandError | CatOutput | Help)[] = [];
 
     switch (command.toLowerCase()) {
       case "cd": {
@@ -62,6 +63,10 @@ function App() {
             console.log(error);
           }
         }
+        break;
+      }
+      case "help": {
+        commandOuputs.push(new Help(args.length > 0 ? args.join(" ") : ""));
         break;
       }
       case "clear":
@@ -106,6 +111,8 @@ function App() {
           <LSOutputLine lsOutput={record} key={i} />
         ) : record instanceof CatOutput ? (
           <CatLine content={record.content} key={i} />
+        ) : record instanceof Help ? (
+          <HelpLine command={record.args} key={i} />
         ) : (
           <ErrorLine commandError={record} key={i} />
         )
