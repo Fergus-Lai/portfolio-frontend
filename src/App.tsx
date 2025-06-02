@@ -32,8 +32,8 @@ function App() {
           try {
             currentPath = await changeDirectory(currentPath, args[0]);
             setPath(currentPath);
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          } catch (_) {
+          } catch (error) {
+            console.log(error);
             commandOuputs.push(
               new CommandError(command, "No such file or directory")
             );
