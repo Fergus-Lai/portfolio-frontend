@@ -17,6 +17,13 @@ export class Help {
   }
 }
 
+export class Wget {
+  file: string;
+  constructor(file: string) {
+    this.file = file;
+  }
+}
+
 export async function changeDirectory(currentPath: string, newPath: string) {
   newPath.split("/").forEach((element) => {
     if (element == "..") {

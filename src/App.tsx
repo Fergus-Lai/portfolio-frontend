@@ -1,19 +1,20 @@
 import { useState } from "react";
 import CommandLine from "./component/CommandLine";
-import { changeDirectory, Command, Help } from "./utils/command";
+import { changeDirectory, Command, Help, Wget } from "./utils/command";
 import { CommandError } from "./utils/commandError";
 import ErrorLine from "./component/ErrorLine";
-import { getFile, listDirectory } from "./utils/api";
+import { downloadFile, getFile, listDirectory } from "./utils/api";
 import { LSOutput } from "./utils/lsOutput";
 import LSOutputLine from "./component/LSLine";
 import { CatOutput } from "./utils/catOuput";
 import CatLine from "./component/CatLine";
 import HelpLine from "./component/HelpLine";
 import Welcome from "./component/Welcome";
+import { WgetLine } from "./component/Wget";
 
 function App() {
   const [terminalRecords, setTerminalRecords] = useState<
-    (Command | LSOutput | CommandError | CatOutput | Help)[]
+    (Command | LSOutput | CommandError | CatOutput | Help | Wget)[]
   >([new Command()]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [showWelcome, setShowWelcome] = useState(true);
@@ -26,7 +27,8 @@ function App() {
     const commandSplitted = newCommand.split(" ");
     const command = commandSplitted[0];
     const args = commandSplitted.slice(1);
-    const commandOuputs: (LSOutput | CommandError | CatOutput | Help)[] = [];
+    const commandOuputs: (LSOutput | CommandError | CatOutput | Help | Wget)[] =
+      [];
 
     switch (command.toLowerCase()) {
       case "cd": {
@@ -80,6 +82,33 @@ function App() {
         setShowWelcome(false);
         return;
       }
+      case "wget": {
+        for (const arg of args) {
+          try {
+            const filePath = currentPath + "/" + arg.replace("./", "");
+            const filename = filePath.split("/").pop();
+            if (!filename) throw Error("File Name Missing");
+            const blob = await downloadFile(filePath);
+            if (blob instanceof CommandError) {
+              commandOuputs.push(blob);
+              return;
+            }
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            commandOuputs.push(new Wget(filename));
+          } catch (error) {
+            console.log(error);
+            commandOuputs.push(
+              new CommandError(command, "Unexpected error occurred")
+            );
+          }
+        }
+        break;
+      }
       case "":
         break;
       default:
@@ -121,6 +150,8 @@ function App() {
           <CatLine content={record.content} key={i} />
         ) : record instanceof Help ? (
           <HelpLine command={record.args} key={i} />
+        ) : record instanceof Wget ? (
+          <WgetLine wget={record} key={i} />
         ) : (
           <ErrorLine commandError={record} key={i} />
         )

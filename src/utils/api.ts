@@ -44,3 +44,19 @@ export const getFile = async (path: string) => {
   }
   return new CatOutput(await response.text());
 };
+
+export const downloadFile = async (path: string) => {
+  const queryPath = path.replace("~", "").slice(1);
+  const response = await fetch(
+    URL + "download/" + (queryPath.length == 0 ? "~" : queryPath)
+  );
+  if (!response.ok) {
+    return new CommandError(
+      "wget",
+      response.status == 404
+        ? `${queryPath}: No such file or directory`
+        : "Unknown error occurred"
+    );
+  }
+  return await response.blob();
+};
