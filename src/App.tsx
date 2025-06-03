@@ -9,12 +9,14 @@ import LSOutputLine from "./component/LSLine";
 import { CatOutput } from "./utils/catOuput";
 import CatLine from "./component/CatLine";
 import HelpLine from "./component/HelpLine";
+import Welcome from "./component/Welcome";
 
 function App() {
   const [terminalRecords, setTerminalRecords] = useState<
     (Command | LSOutput | CommandError | CatOutput | Help)[]
   >([new Command()]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const [path, setPath] = useState("~");
 
@@ -75,6 +77,7 @@ function App() {
       case "reset": {
         setTerminalRecords([new Command(currentPath, "")]);
         setCommandHistory([]);
+        setShowWelcome(false);
         return;
       }
       case "":
@@ -102,6 +105,7 @@ function App() {
   };
   return (
     <main className="flex min-h-screen min-w-screen h-full w-full bg-terminal-purple flex-col pt-2">
+      {showWelcome && <Welcome />}
       {terminalRecords.map((record, i) =>
         record instanceof Command ? (
           <CommandLine
