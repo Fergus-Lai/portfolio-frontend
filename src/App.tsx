@@ -14,7 +14,7 @@ export default function App() {
   const [path, setPath] = useState("~");
   return (
     <main className="flex flex-col h-screen w-screen">
-      <div className="flex flex-row gap-2 bg-slate-800 text-white">
+      <div className="flex flex-row gap-1 bg-slate-800 text-white">
         <button
           className={
             "flex h-full w-1/8 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
