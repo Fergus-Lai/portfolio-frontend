@@ -1,4 +1,4 @@
-import type { CommandError } from "../utils/commandError";
+import type { CommandError } from "../../utils/commandError";
 
 interface Props {
   commandError: CommandError;

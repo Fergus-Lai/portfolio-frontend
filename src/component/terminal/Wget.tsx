@@ -1,4 +1,4 @@
-import type { Wget } from "../utils/command";
+import type { Wget } from "../../utils/command";
 
 interface Props {
   wget: Wget;

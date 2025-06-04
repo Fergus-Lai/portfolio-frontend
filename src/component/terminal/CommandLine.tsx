@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Command } from "../utils/command";
+import type { Command } from "../../utils/command";
 
 interface Props {
   disabled: boolean;

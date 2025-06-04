@@ -1,16 +1,16 @@
 import { useState } from "react";
-import CommandLine from "./component/CommandLine";
+import CommandLine from "./component/terminal/CommandLine";
 import { changeDirectory, Command, Help, Wget } from "./utils/command";
 import { CommandError } from "./utils/commandError";
-import ErrorLine from "./component/ErrorLine";
+import ErrorLine from "./component/terminal/ErrorLine";
 import { downloadFile, getFile, listDirectory } from "./utils/api";
 import { LSOutput } from "./utils/lsOutput";
-import LSOutputLine from "./component/LSLine";
+import LSOutputLine from "./component/terminal/LSLine";
 import { CatOutput } from "./utils/catOuput";
-import CatLine from "./component/CatLine";
-import HelpLine from "./component/HelpLine";
-import Welcome from "./component/Welcome";
-import { WgetLine } from "./component/Wget";
+import CatLine from "./component/terminal/CatLine";
+import HelpLine from "./component/terminal/HelpLine";
+import Welcome from "./component/terminal/Welcome";
+import { WgetLine } from "./component/terminal/Wget";
 
 function App() {
   const [terminalRecords, setTerminalRecords] = useState<
