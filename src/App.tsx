@@ -13,7 +13,29 @@ export default function App() {
 
   const [path, setPath] = useState("~");
   return (
-    <main className="flex flex-col min-h-screen min-w-screen h-full w-full">
+    <main className="flex flex-col h-screen w-screen">
+      <div className="flex flex-row gap-2 bg-slate-800 text-white">
+        <button
+          className={
+            "flex h-full w-1/8 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
+            (terminalVisible ? "bg-slate-500 " : "bg-slate-700 ") +
+            (terminalVisible ? "text-white" : "text-gray-300")
+          }
+          onClick={() => !terminalVisible && setTerminalVisible(true)}
+        >
+          Terminal
+        </button>
+        <button
+          className={
+            "flex h-full w-1/8 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
+            (terminalVisible ? "bg-slate-700 " : "bg-slate-500 ") +
+            (terminalVisible ? "text-gray-300" : "text-white")
+          }
+          onClick={() => terminalVisible && setTerminalVisible(false)}
+        >
+          Internet Browser
+        </button>
+      </div>
       {terminalVisible ? (
         <Terminal
           terminalRecords={terminalRecords}

@@ -150,7 +150,7 @@ function Terminal({
     });
   };
   return (
-    <div className="flex flex-auto bg-terminal-purple flex-col pt-2">
+    <div className="flex flex-col h-full bg-terminal-purple overflow-y-auto pt-2">
       {showWelcome && <Welcome />}
       {terminalRecords.map((record, i) =>
         record instanceof Command ? (
