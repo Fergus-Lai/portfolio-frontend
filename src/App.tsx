@@ -1,21 +1,27 @@
 import { useState } from "react";
 import CommandLine from "./component/terminal/CommandLine";
-import { changeDirectory, Command, Help, Wget } from "./utils/command";
-import { CommandError } from "./utils/commandError";
+import {
+  CatOutput,
+  changeDirectory,
+  Command,
+  CommandError,
+  Help,
+  LSOutput,
+  Wget,
+  type CommandOutput,
+  type TerminalRecord,
+} from "./utils/command";
 import ErrorLine from "./component/terminal/ErrorLine";
 import { downloadFile, getFile, listDirectory } from "./utils/api";
-import { LSOutput } from "./utils/lsOutput";
 import LSOutputLine from "./component/terminal/LSLine";
-import { CatOutput } from "./utils/catOuput";
 import CatLine from "./component/terminal/CatLine";
 import HelpLine from "./component/terminal/HelpLine";
 import Welcome from "./component/terminal/Welcome";
 import { WgetLine } from "./component/terminal/Wget";
-
 function App() {
-  const [terminalRecords, setTerminalRecords] = useState<
-    (Command | LSOutput | CommandError | CatOutput | Help | Wget)[]
-  >([new Command()]);
+  const [terminalRecords, setTerminalRecords] = useState<TerminalRecord[]>([
+    new Command(),
+  ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [showWelcome, setShowWelcome] = useState(true);
 
@@ -27,8 +33,7 @@ function App() {
     const commandSplitted = newCommand.split(" ");
     const command = commandSplitted[0];
     const args = commandSplitted.slice(1);
-    const commandOuputs: (LSOutput | CommandError | CatOutput | Help | Wget)[] =
-      [];
+    const commandOuputs: CommandOutput[] = [];
 
     switch (command.toLowerCase()) {
       case "cd": {

@@ -1,6 +1,4 @@
-import { CatOutput } from "./catOuput";
-import { CommandError } from "./commandError";
-import { LSOutput } from "./lsOutput";
+import { CatOutput, CommandError, LSOutput } from "./command";
 
 const URL =
   process.env.NODE_ENV == "production"

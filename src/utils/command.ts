@@ -24,6 +24,38 @@ export class Wget {
   }
 }
 
+export class CatOutput {
+  content: string;
+  constructor(content: string) {
+    this.content = content;
+  }
+}
+
+export class CommandError {
+  command: string;
+  error: string;
+
+  constructor(command: string, error: string) {
+    this.command = command;
+    this.error = error;
+  }
+}
+
+interface ILSOuput {
+  file: string[];
+  directory: string[];
+}
+
+export class LSOutput {
+  file: string[] = [];
+  directory: string[] = [];
+
+  constructor(data: ILSOuput) {
+    this.file = data.file;
+    this.directory = data.directory;
+  }
+}
+
 export async function changeDirectory(currentPath: string, newPath: string) {
   newPath.split("/").forEach((element) => {
     if (element == "..") {
@@ -40,3 +72,7 @@ export async function changeDirectory(currentPath: string, newPath: string) {
     throw RangeError("No such directory");
   return currentPath;
 }
+
+export type CommandOutput = LSOutput | CommandError | CatOutput | Help | Wget;
+
+export type TerminalRecord = Command | CommandOutput;

@@ -1,4 +1,4 @@
-import type { LSOutput } from "../../utils/lsOutput";
+import type { LSOutput } from "../../utils/command";
 
 interface Props {
   lsOutput: LSOutput;
