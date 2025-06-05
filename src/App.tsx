@@ -13,8 +13,14 @@ export default function App() {
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [showWelcome, setShowWelcome] = useState(true);
-
   const [path, setPath] = useState("~");
+
+  // Contact States
+  const [title, setTitle] = useState("");
+  const [email, setEmail] = useState("");
+  const [inputName, setInputName] = useState("");
+  const [message, setMessage] = useState("");
+
   return (
     <main className="flex flex-col h-screen w-screen">
       <div className="flex flex-row bg-zinc-800 text-white divide-x divide-zinc-500">
@@ -51,7 +57,16 @@ export default function App() {
       ) : tabIndex == 1 ? (
         <BrowserTab />
       ) : (
-        <ContactMe />
+        <ContactMe
+          title={title}
+          setTitle={setTitle}
+          email={email}
+          setEmail={setEmail}
+          inputName={inputName}
+          setInputName={setInputName}
+          message={message}
+          setMessage={setMessage}
+        />
       )}
     </main>
   );

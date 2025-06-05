@@ -1,12 +1,28 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Bounce, ToastContainer, toast, type Id } from "react-toastify";
 import { sendMessage } from "./utils/api";
 
-export const ContactMe = () => {
-  const [title, setTitle] = useState("");
-  const [email, setEmail] = useState("");
-  const [inputName, setInputName] = useState("");
-  const [message, setMessage] = useState("");
+interface Props {
+  title: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  inputName: string;
+  setInputName: React.Dispatch<React.SetStateAction<string>>;
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const ContactMe = ({
+  title,
+  setTitle,
+  email,
+  setEmail,
+  inputName,
+  setInputName,
+  message,
+  setMessage,
+}: Props) => {
   const toastId = useRef<Id | null>(null);
   return (
     <div className="flex bg-black w-full h-full overflow-auto font-mono p-2 text-white gap-4 justify-center">
