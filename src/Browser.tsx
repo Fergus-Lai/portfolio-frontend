@@ -1,9 +1,12 @@
-import { useState } from "react";
 import { Projects } from "./component/browser/Projects";
 import { Experiences } from "./component/browser/Experiences";
 
-export default function BrowserTab() {
-  const [experienceTab, setExperienceTab] = useState(true);
+interface Props {
+  experienceTab: boolean;
+  setExperienceTab: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function BrowserTab({ experienceTab, setExperienceTab }: Props) {
   return (
     <div className="flex bg-black w-full h-full overflow-auto font-mono p-2 text-white gap-4 justify-center ">
       <div className="flex flex-col items-center gap-4 w-1/2 xl:w-1/3 min-w-md">

@@ -21,6 +21,9 @@ export default function App() {
   const [inputName, setInputName] = useState("");
   const [message, setMessage] = useState("");
 
+  // Browser States
+  const [experienceTab, setExperienceTab] = useState(true);
+
   return (
     <main className="flex flex-col h-screen w-screen">
       <div className="flex flex-row bg-zinc-800 text-white divide-x divide-zinc-500">
@@ -55,7 +58,10 @@ export default function App() {
           setPath={setPath}
         />
       ) : tabIndex == 1 ? (
-        <BrowserTab />
+        <BrowserTab
+          experienceTab={experienceTab}
+          setExperienceTab={setExperienceTab}
+        />
       ) : (
         <ContactMe
           title={title}
