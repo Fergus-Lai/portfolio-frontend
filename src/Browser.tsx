@@ -53,6 +53,26 @@ export default function BrowserTab() {
             <div>Oct 2022 - June 2025</div>
           </div>
         </div>
+        <div className="flex flex-col w-full border-t-zinc-600 border-t-2 pb-8">
+          <div className="text-xl font-extrabold">Skill</div>
+          <div className="flex flex-row gap-2">
+            <div className="font-bold">Frontend:</div> React, Tailwind, Vue,
+            Tkinter
+          </div>
+          <div className="flex flex-row gap-2">
+            <div className="font-bold">Backend:</div> Node.js, Socket.io,
+            Express
+          </div>
+          <div className="flex flex-row gap-2">
+            <div className="font-bold">Fullstack:</div> Next.js, Nuxt.js
+          </div>
+          <div className="flex flex-row gap-2">
+            <div className="font-bold">Game Development:</div> Unity
+          </div>
+          <div className="flex flex-row gap-2">
+            <div className="font-bold">Language:</div> TypeScript, Python, C#
+          </div>
+        </div>
       </div>
     </div>
   );
