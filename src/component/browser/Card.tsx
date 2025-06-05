@@ -5,7 +5,7 @@ import { TechStackBar } from "./TechStackBar";
 export const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="flex flex-col w-full py-2">
-      <div className="flex flex-row w-full justify-between">
+      <div className="flex flex-row w-full justify-between items-start">
         <a
           href={project.url}
           className={
