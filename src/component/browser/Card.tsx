@@ -25,7 +25,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
 export const ExperienceCard = ({ experience }: { experience: Experience }) => {
   return (
-    <div className="flex flex-col w-full py-2">
+    <div className="flex flex-col w-full py-2 gap-2">
       <div className="flex flex-row w-full justify-between">
         <div className="flex w-fit flex-col">
           <div className="flex w-fit text-lg flex-row items-end">
