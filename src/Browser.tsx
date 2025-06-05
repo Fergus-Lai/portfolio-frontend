@@ -4,9 +4,14 @@ import { Experiences } from "./component/browser/Experiences";
 interface Props {
   experienceTab: boolean;
   setExperienceTab: React.Dispatch<React.SetStateAction<boolean>>;
+  toContact: () => void;
 }
 
-export default function BrowserTab({ experienceTab, setExperienceTab }: Props) {
+export default function BrowserTab({
+  experienceTab,
+  setExperienceTab,
+  toContact,
+}: Props) {
   return (
     <div className="flex bg-black w-full h-full overflow-auto font-mono p-2 text-white gap-4 justify-center ">
       <div className="flex flex-col items-center gap-4 w-1/2 xl:w-1/3 min-w-md">
@@ -18,7 +23,10 @@ export default function BrowserTab({ experienceTab, setExperienceTab }: Props) {
             <div>Fullstack Software Engineer and Python Developer</div>
           </div>
         </div>
-        <button className="border-white border-1 rounded-4xl py-2 cursor-pointer w-full">
+        <button
+          className="border-white border-1 rounded-4xl py-2 cursor-pointer w-full"
+          onClick={toContact}
+        >
           Contact Me
         </button>
         <div className="flex flex-row justify-center w-full pt-4">

@@ -61,6 +61,7 @@ export default function App() {
         <BrowserTab
           experienceTab={experienceTab}
           setExperienceTab={setExperienceTab}
+          toContact={() => setTabIndex(2)}
         />
       ) : (
         <ContactMe
