@@ -13,4 +13,5 @@ export interface Experience {
   duration: string;
   location: string;
   descriptions: string[];
+  techStack: TechStackLogo[];
 }

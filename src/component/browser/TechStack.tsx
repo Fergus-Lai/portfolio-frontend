@@ -6,6 +6,7 @@ import socketio_svg from "../../assets/socketio.svg";
 import tailwind_svg from "../../assets/tailwind.svg";
 import typescript_svg from "../../assets/typescript.svg";
 import unity_svg from "../../assets/unity.svg";
+import python_svg from "../../assets/python.svg";
 
 export type TechStackLogo = {
   svg: string;
@@ -44,4 +45,9 @@ export const typescriptLogo: TechStackLogo = {
 export const unityLogo: TechStackLogo = {
   svg: unity_svg,
   alt: "Unity",
+};
+
+export const pythonLogo: TechStackLogo = {
+  svg: python_svg,
+  alt: "Python",
 };

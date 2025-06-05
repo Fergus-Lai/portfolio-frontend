@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Projects } from "./component/browser/Projects";
+import { Experiences } from "./component/browser/Experiences";
 
 export default function BrowserTab() {
   const [experienceTab, setExperienceTab] = useState(true);
@@ -41,7 +42,7 @@ export default function BrowserTab() {
             Project
           </button>
         </div>
-        {experienceTab ? <></> : <Projects />}
+        {experienceTab ? <Experiences /> : <Projects />}
       </div>
     </div>
   );
