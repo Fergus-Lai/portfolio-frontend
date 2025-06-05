@@ -67,6 +67,9 @@ export const sendMessage = async (
 ) => {
   const response = await fetch(URL + "contact", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       title: title,
       name: inputName,
