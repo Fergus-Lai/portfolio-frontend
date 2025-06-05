@@ -15,12 +15,12 @@ export default function App() {
   const [path, setPath] = useState("~");
   return (
     <main className="flex flex-col h-screen w-screen">
-      <div className="flex flex-row gap-1 bg-slate-800 text-white">
+      <div className="flex flex-row bg-zinc-800 text-white divide-x divide-zinc-500">
         <button
           className={
-            "flex h-full sm:w-1/4 w-1/3 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
-            (terminalVisible ? "bg-slate-500 " : "bg-slate-700 ") +
-            (terminalVisible ? "text-white" : "text-gray-300")
+            "flex h-full sm:w-1/4 w-1/3 p-4 hover:bg-zinc-500 hover:text-white " +
+            (terminalVisible ? "bg-zinc-700 " : "bg-zinc-800 ") +
+            (terminalVisible ? "text-white" : "text-zinc-300")
           }
           onClick={() => !terminalVisible && setTerminalVisible(true)}
         >
@@ -28,9 +28,9 @@ export default function App() {
         </button>
         <button
           className={
-            "flex h-full sm:w-1/4 w-1/3 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
-            (terminalVisible ? "bg-slate-700 " : "bg-slate-500 ") +
-            (terminalVisible ? "text-gray-300" : "text-white")
+            "flex h-full sm:w-1/4 w-1/3 p-4 hover:bg-zinc-500 hover:text-white " +
+            (terminalVisible ? "bg-zinc-800 " : "bg-zinc-700 ") +
+            (terminalVisible ? "text-zinc-300" : "text-white")
           }
           onClick={() => terminalVisible && setTerminalVisible(false)}
         >
