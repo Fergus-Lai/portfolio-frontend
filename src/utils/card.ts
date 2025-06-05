@@ -1,7 +1,10 @@
+import type { TechStackLogo } from "../component/browser/TechStack";
+
 export interface Project {
   title: string;
   url?: string;
   descriptions: string[];
+  techStack: TechStackLogo[];
 }
 
 export interface Experience {

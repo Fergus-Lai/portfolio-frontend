@@ -1,5 +1,15 @@
 import type { Project } from "../../utils/card";
 import { ProjectCard } from "./Card";
+import {
+  cSharpLogo,
+  expressLogo,
+  nodeLogo,
+  reactLogo,
+  socketioLogo,
+  tailwindLogo,
+  typescriptLogo,
+  unityLogo,
+} from "./TechStack";
 
 export const Projects = () => {
   const projects: Project[] = [
@@ -14,6 +24,14 @@ export const Projects = () => {
         "Frontend Repo https://github.com/Fergus-Lai/ultimate-tic-tac-toe-frontend",
         "Backend Repo https://github.com/Fergus-Lai/ultimate-tic-tac-toe-backend",
       ],
+      techStack: [
+        reactLogo,
+        tailwindLogo,
+        nodeLogo,
+        expressLogo,
+        socketioLogo,
+        typescriptLogo,
+      ],
     },
     {
       title: "Portfolio",
@@ -27,6 +45,13 @@ export const Projects = () => {
         "Frontend Repo https://github.com/Fergus-Lai/portfolio-frontend",
         "Backend Repo https://github.com/Fergus-Lai/portfolio-backend",
       ],
+      techStack: [
+        reactLogo,
+        tailwindLogo,
+        nodeLogo,
+        expressLogo,
+        typescriptLogo,
+      ],
     },
     {
       title: "Roguelike FPS Game",
@@ -37,6 +62,7 @@ export const Projects = () => {
         "Battle simulation to evaluate enemy generated",
         "Adjust simulation according to player's ability",
       ],
+      techStack: [unityLogo, cSharpLogo],
     },
   ];
   return (
