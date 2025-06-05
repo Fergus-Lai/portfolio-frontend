@@ -3,6 +3,7 @@ import Terminal from "./Terminal";
 import { type TerminalRecord, Command } from "./utils/command";
 import BrowserTab from "./Browser";
 import { NavigatorTab } from "./component/browser/NavigatorTab";
+import { ContactMe } from "./Contact";
 
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -29,6 +30,12 @@ export default function App() {
           selfIndex={1}
           text="Internet Browser"
         />
+        <NavigatorTab
+          tabIndex={tabIndex}
+          setTabIndex={setTabIndex}
+          selfIndex={2}
+          text="Contact Me"
+        />
       </div>
       {tabIndex == 0 ? (
         <Terminal
@@ -44,7 +51,7 @@ export default function App() {
       ) : tabIndex == 1 ? (
         <BrowserTab />
       ) : (
-        <></>
+        <ContactMe />
       )}
     </main>
   );

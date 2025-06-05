@@ -58,3 +58,21 @@ export const downloadFile = async (path: string) => {
   }
   return await response.blob();
 };
+
+export const sendMessage = async (
+  title: string,
+  inputName: string,
+  email: string,
+  message: string
+) => {
+  const response = await fetch(URL + "contact", {
+    method: "POST",
+    body: JSON.stringify({
+      title: title,
+      name: inputName,
+      email: email,
+      message: message,
+    }),
+  });
+  return response.ok;
+};
