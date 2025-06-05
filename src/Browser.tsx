@@ -5,7 +5,7 @@ import { Experiences } from "./component/browser/Experiences";
 export default function BrowserTab() {
   const [experienceTab, setExperienceTab] = useState(true);
   return (
-    <div className="flex bg-black w-full h-full overflow-auto font-mono p-2 text-white gap-4 justify-center">
+    <div className="flex bg-black w-full h-full overflow-auto font-mono p-2 text-white gap-4 justify-center ">
       <div className="flex flex-col items-center gap-4 w-1/2 xl:w-1/3 min-w-md">
         <div className="flex flex-row w-full justify-between gap-4">
           <img src="/icon.jpeg" className="rounded-full h-32" />
@@ -43,6 +43,16 @@ export default function BrowserTab() {
           </button>
         </div>
         {experienceTab ? <Experiences /> : <Projects />}
+        <div className="flex flex-col w-full border-t-zinc-600 border-t-2">
+          <div className="text-xl font-extrabold">Education</div>
+          <div className="flex flex-row w-full justify-between">
+            <div className="flex gap-1">
+              <div className="font-bold">Durham University</div> - BS in
+              Computer Science
+            </div>
+            <div>Oct 2022 - June 2025</div>
+          </div>
+        </div>
       </div>
     </div>
   );
