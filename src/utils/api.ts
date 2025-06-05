@@ -71,10 +71,10 @@ export const sendMessage = async (
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title: title,
-      name: inputName,
-      email: email,
-      message: message,
+      title,
+      inputName,
+      email,
+      message,
     }),
   });
   return response.ok;
