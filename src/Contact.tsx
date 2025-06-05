@@ -70,6 +70,10 @@ export const ContactMe = () => {
               toastId.current = toast.error("Missing Field Message");
               return;
             }
+            if (!email.includes("@")) {
+              toastId.current = toast.error("Invalid Email Address");
+              return;
+            }
             toastId.current = toast.info("Submitting Form");
             const res = await sendMessage(title, inputName, email, message);
             toast.dismiss(toastId.current);
