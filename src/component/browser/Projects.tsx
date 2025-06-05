@@ -15,6 +15,19 @@ export const Projects = () => {
         "Backend Repo https://github.com/Fergus-Lai/ultimate-tic-tac-toe-backend",
       ],
     },
+    {
+      title: "Portfolio",
+      url: "https://www.fergus-lai.dev/",
+      descriptions: [
+        "The site you are on right now",
+        "Inspired by Linux Terminal",
+        "User access information via Linux style command",
+        "Frontend Deployed on Vercel",
+        "Backend Deployed on Render",
+        "Frontend Repo https://github.com/Fergus-Lai/portfolio-frontend",
+        "Backend Repo https://github.com/Fergus-Lai/portfolio-backend",
+      ],
+    },
   ];
   return (
     <div className="flex flex-col w-full">
