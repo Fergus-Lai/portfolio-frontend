@@ -7,7 +7,7 @@ export type project = {
 export const ProjectCard = ({ project }: { project: project }) => {
   const urlRegex = new RegExp(/(https:\/\/[^\s"']+)/);
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full py-2">
       <a
         href={project.url}
         className={

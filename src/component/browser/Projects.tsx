@@ -40,7 +40,7 @@ export const Projects = () => {
     },
   ];
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full divide-y divide-zinc-600">
       {projects.map((element, i) => (
         <ProjectCard project={element} key={i} />
       ))}
