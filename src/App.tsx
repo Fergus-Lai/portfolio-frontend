@@ -17,7 +17,7 @@ export default function App() {
       <div className="flex flex-row gap-1 bg-slate-800 text-white">
         <button
           className={
-            "flex h-full w-1/8 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
+            "flex h-full sm:w-1/4 w-1/3 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
             (terminalVisible ? "bg-slate-500 " : "bg-slate-700 ") +
             (terminalVisible ? "text-white" : "text-gray-300")
           }
@@ -27,7 +27,7 @@ export default function App() {
         </button>
         <button
           className={
-            "flex h-full w-1/8 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
+            "flex h-full sm:w-1/4 w-1/3 p-4 rounded-2xl hover:bg-slate-500 hover:text-white " +
             (terminalVisible ? "bg-slate-700 " : "bg-slate-500 ") +
             (terminalVisible ? "text-gray-300" : "text-white")
           }
