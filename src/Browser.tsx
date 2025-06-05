@@ -47,7 +47,7 @@ export default function BrowserTab() {
           <div className="text-xl font-extrabold">Education</div>
           <div className="flex flex-row w-full justify-between">
             <div className="flex gap-1">
-              <div className="font-bold">Durham University</div> - BS in
+              <div className="font-bold">Durham University</div> - BSc in
               Computer Science
             </div>
             <div>Oct 2022 - June 2025</div>
