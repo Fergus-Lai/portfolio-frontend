@@ -28,6 +28,16 @@ export const Projects = () => {
         "Backend Repo https://github.com/Fergus-Lai/portfolio-backend",
       ],
     },
+    {
+      title: "Roguelike FPS Game",
+      descriptions: [
+        "Created a FPS Dungeon Crawler Roguelike Game in Unity",
+        "Procedurally generating the enemy according to player's parameter",
+        "Designed Genetic algorithm to modify enemy parameter",
+        "Battle simulation to evaluate enemy generated",
+        "Adjust simulation according to player's ability",
+      ],
+    },
   ];
   return (
     <div className="flex flex-col w-full">
