@@ -5,6 +5,18 @@ import { pythonLogo } from "./TechStack";
 export const Experiences = () => {
   const experiences: Experience[] = [
     {
+      title: "Freelance Python Developer",
+      company: "Contempo Limited",
+      location: "Remote",
+      duration: "Sep 2024 - June 2025",
+      techStack: [pythonLogo],
+      descriptions: [
+        "Continue development on internal tooling developed during my internship",
+        "Extending the software to be deployed to 11 teams.",
+        "Developed internal tooling to compare the form and photo of 2 version of a PDF",
+      ],
+    },
+    {
       title: "Software Enginner Intern",
       company: "Contempo Limited",
       location: "Hong Kong",
