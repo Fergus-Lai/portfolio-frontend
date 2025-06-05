@@ -2,9 +2,10 @@ import { useState } from "react";
 import Terminal from "./Terminal";
 import { type TerminalRecord, Command } from "./utils/command";
 import BrowserTab from "./Browser";
+import { NavigatorTab } from "./component/browser/NavigatorTab";
 
 export default function App() {
-  const [terminalVisible, setTerminalVisible] = useState(true);
+  const [tabIndex, setTabIndex] = useState(0);
   // Terminal States
   const [terminalRecords, setTerminalRecords] = useState<TerminalRecord[]>([
     new Command(),
@@ -16,28 +17,20 @@ export default function App() {
   return (
     <main className="flex flex-col h-screen w-screen">
       <div className="flex flex-row bg-zinc-800 text-white divide-x divide-zinc-500">
-        <button
-          className={
-            "flex h-full sm:w-1/4 w-1/3 p-4 hover:bg-zinc-500 hover:text-white " +
-            (terminalVisible ? "bg-zinc-700 " : "bg-zinc-800 ") +
-            (terminalVisible ? "text-white" : "text-zinc-300")
-          }
-          onClick={() => !terminalVisible && setTerminalVisible(true)}
-        >
-          Terminal
-        </button>
-        <button
-          className={
-            "flex h-full sm:w-1/4 w-1/3 p-4 hover:bg-zinc-500 hover:text-white " +
-            (terminalVisible ? "bg-zinc-800 " : "bg-zinc-700 ") +
-            (terminalVisible ? "text-zinc-300" : "text-white")
-          }
-          onClick={() => terminalVisible && setTerminalVisible(false)}
-        >
-          Internet Browser
-        </button>
+        <NavigatorTab
+          tabIndex={tabIndex}
+          setTabIndex={setTabIndex}
+          selfIndex={0}
+          text="Terminal"
+        />
+        <NavigatorTab
+          tabIndex={tabIndex}
+          setTabIndex={setTabIndex}
+          selfIndex={1}
+          text="Internet Browser"
+        />
       </div>
-      {terminalVisible ? (
+      {tabIndex == 0 ? (
         <Terminal
           terminalRecords={terminalRecords}
           setTerminalRecords={setTerminalRecords}
@@ -48,8 +41,10 @@ export default function App() {
           path={path}
           setPath={setPath}
         />
-      ) : (
+      ) : tabIndex == 1 ? (
         <BrowserTab />
+      ) : (
+        <></>
       )}
     </main>
   );
