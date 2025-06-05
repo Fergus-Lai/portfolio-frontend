@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Terminal from "./Terminal";
 import { type TerminalRecord, Command } from "./utils/command";
+import BrowserTab from "./Browser";
 
 export default function App() {
   const [terminalVisible, setTerminalVisible] = useState(true);
@@ -48,7 +49,7 @@ export default function App() {
           setPath={setPath}
         />
       ) : (
-        <></>
+        <BrowserTab />
       )}
     </main>
   );
