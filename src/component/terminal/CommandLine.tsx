@@ -30,18 +30,18 @@ export default function CommandLine({
 
   return (
     <div className="flex flex-col md:flex-row px-4 font-mono w-full">
-      <div className="flex flex-row">
-        <p className="font-bold text-terminal-green">
+      <div className="flex flex-row w-fit">
+        <p className="font-bold text-terminal-green whitespace-nowrap">
           visitor@fergus-portfolio
         </p>
         <p className="text-white">:</p>
       </div>
-      <div className="flex flex-row">
+      <div className="flex flex-row w-full">
         <p className="text-terminal-blue">{command.path}</p>
         <p className="text-white pr-2">$</p>
         <input
           autoFocus={!disabled}
-          className="focus:outline-0 text-white break-words flex-auto resize-none"
+          className="focus:outline-0 text-white break-words w-full resize-none flex-1"
           disabled={disabled}
           value={commandState ?? ""}
           type="text"
