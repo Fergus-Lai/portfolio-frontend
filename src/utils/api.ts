@@ -94,3 +94,21 @@ export const adminSignIn = async (username: string, password: string) => {
   if (response.ok) localStorage.setItem("token", (await response.json()).token);
   return response.ok;
 };
+
+export const getAdminResponse = async (page = 0) => {
+  const response = await fetch(URL + `admin/auth/contact/${page}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  if (response.status == 403) {
+    localStorage.removeItem("token");
+    throw Error("Expired Token");
+  }
+  if (!response.ok) {
+    throw Error("Unexpected Error");
+  }
+  return await response.json();
+};
