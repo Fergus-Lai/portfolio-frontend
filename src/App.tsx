@@ -4,6 +4,7 @@ import { type TerminalRecord, Command } from "./utils/command";
 import BrowserTab from "./Browser";
 import { NavigatorTab } from "./component/browser/NavigatorTab";
 import { ContactMe } from "./Contact";
+import { Admin } from "./Admin";
 
 export default function App() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -45,6 +46,12 @@ export default function App() {
           selfIndex={2}
           text="Contact Me"
         />
+        <NavigatorTab
+          tabIndex={tabIndex}
+          setTabIndex={setTabIndex}
+          selfIndex={3}
+          text="Admin"
+        />
       </div>
       {tabIndex == 0 ? (
         <Terminal
@@ -63,7 +70,7 @@ export default function App() {
           setExperienceTab={setExperienceTab}
           toContact={() => setTabIndex(2)}
         />
-      ) : (
+      ) : tabIndex == 2 ? (
         <ContactMe
           title={title}
           setTitle={setTitle}
@@ -74,6 +81,8 @@ export default function App() {
           message={message}
           setMessage={setMessage}
         />
+      ) : (
+        <Admin />
       )}
     </main>
   );

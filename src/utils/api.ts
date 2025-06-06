@@ -79,3 +79,18 @@ export const sendMessage = async (
   });
   return response.ok;
 };
+
+export const adminSignIn = async (username: string, password: string) => {
+  const response = await fetch(URL + "admin/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  });
+  if (response.ok) localStorage.setItem("token", (await response.json()).token);
+  return response.ok;
+};
