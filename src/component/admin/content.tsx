@@ -33,20 +33,19 @@ export const AdminContent = ({ setAuth }: Props) => {
     return () => {};
   }, [page, setAuth]);
   return (
-    <div className="overflow-auto flex flex-col gap-2 w-full">
+    <>
       {loading ? (
         <div className="flex justify-center items-center h-full w-full">
-          {" "}
           <ClipLoader
             color={"#ffffff"}
             loading={loading}
             size={150}
             aria-label="Loading Spinner"
             data-testid="loader"
-          />{" "}
+          />
         </div>
       ) : (
-        <>
+        <div className="overflow-auto flex flex-col gap-2 w-full p-2">
           {data.map((element, i) => (
             <MessageCard message={element} key={i} />
           ))}
@@ -66,8 +65,8 @@ export const AdminContent = ({ setAuth }: Props) => {
               {">"}
             </button>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };

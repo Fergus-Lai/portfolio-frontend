@@ -10,9 +10,9 @@ export const LoginPanel = ({ setAuth }: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <form className="w-full h-full flex items-center justify-center">
-      <div className="flex flex-col w-1/2 h-1/2 rounded-3xl border-zinc-300 border-2 bg-zinc-800 justify-center gap-4 items-center ">
-        <label className="text-2xl">
+    <form className="flex w-full h-full md:items-center md:justify-center">
+      <div className="flex flex-col w-full h-full md:w-1/2 md:h-1/2 rounded-3xl border-zinc-300 border-2 bg-zinc-800 justify-center gap-4 items-center">
+        <label className="md:text-2xl">
           Username:
           <input
             type="text"
@@ -22,7 +22,7 @@ export const LoginPanel = ({ setAuth }: Props) => {
             className="outline-2 outline-zinc-500 focus:outline-zinc-300 rounded-2xl p-2"
           />
         </label>
-        <label className="text-2xl">
+        <label className="md:text-2xl">
           Password:
           <input
             type="password"

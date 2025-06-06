@@ -7,7 +7,7 @@ export const Admin = () => {
   const [auth, setAuth] = useState(!!localStorage.getItem("token"));
 
   return (
-    <div className="flex bg-black w-full h-full font-mono p-2 text-white gap-4 justify-center">
+    <div className="flex bg-black w-full h-full font-mono text-white ">
       {!auth ? (
         <LoginPanel setAuth={setAuth} />
       ) : (
