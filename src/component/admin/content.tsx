@@ -3,6 +3,7 @@ import { getAdminResponse } from "../../utils/api";
 import type { Message } from "../../utils/message";
 import { toast } from "react-toastify";
 import { MessageCard } from "./MessageCard";
+import { ClipLoader } from "react-spinners";
 
 interface Props {
   setAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,9 +33,15 @@ export const AdminContent = ({ setAuth }: Props) => {
     return () => {};
   }, [page, setAuth]);
   return (
-    <div className="w-full h-full overflow-auto flex flex-col gap-2">
+    <div className="w-full h-full overflow-auto flex flex-col gap-2 justify-center items-center">
       {loading ? (
-        <div>Loading</div>
+        <ClipLoader
+          color={"#ffffff"}
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       ) : (
         <>
           {data.map((element, i) => (
