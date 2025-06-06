@@ -14,7 +14,7 @@ export default function BrowserTab({
 }: Props) {
   return (
     <div className="flex bg-black w-full h-full overflow-auto font-mono p-2 text-white gap-4 justify-center ">
-      <div className="flex flex-col items-center gap-4 w-1/2 xl:w-1/3 min-w-md">
+      <div className="flex flex-col items-center gap-4 w-full lg:w-1/2 xl:w-1/3">
         <div className="flex flex-row w-full justify-between gap-4">
           <img src="/icon.jpeg" className="rounded-full h-32" />
           <div className="flex flex-col w-full justify-between">
@@ -56,10 +56,11 @@ export default function BrowserTab({
         {experienceTab ? <Experiences /> : <Projects />}
         <div className="flex flex-col w-full border-t-zinc-600 border-t-2">
           <div className="text-xl font-extrabold">Education</div>
-          <div className="flex flex-row w-full justify-between">
-            <div className="flex gap-1">
-              <div className="font-bold">Durham University</div> - BSc in
-              Computer Science
+          <div className="flex flex-col md:flex-row w-full md:justify-between">
+            <div className="flex flex-col md:flex-row gap-0 md:gap-2">
+              <div className="font-bold">Durham University</div>
+              <div className="hidden md:flex">-</div>
+              <div>BSc in Computer Science</div>
             </div>
             <div>Oct 2022 - June 2025</div>
           </div>
