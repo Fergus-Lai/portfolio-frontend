@@ -33,15 +33,18 @@ export const AdminContent = ({ setAuth }: Props) => {
     return () => {};
   }, [page, setAuth]);
   return (
-    <div className="w-full h-full overflow-auto flex flex-col gap-2 justify-center items-center">
+    <div className="overflow-auto flex flex-col gap-2 w-full">
       {loading ? (
-        <ClipLoader
-          color={"#ffffff"}
-          loading={loading}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+        <div className="flex justify-center items-center h-full w-full">
+          {" "}
+          <ClipLoader
+            color={"#ffffff"}
+            loading={loading}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />{" "}
+        </div>
       ) : (
         <>
           {data.map((element, i) => (
