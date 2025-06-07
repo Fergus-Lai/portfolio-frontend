@@ -133,11 +133,13 @@ function Terminal({
         break;
     }
 
-    setCommandHistory((prevCommands) => {
-      const newCommands = [...prevCommands];
-      newCommands.push(newCommand);
-      return newCommands;
-    });
+    if (newCommand.length != 0) {
+      setCommandHistory((prevCommands) => {
+        const newCommands = [...prevCommands];
+        newCommands.push(newCommand);
+        return newCommands;
+      });
+    }
 
     setTerminalRecords((prevCommands) => {
       if (prevCommands.length === 0) return prevCommands;

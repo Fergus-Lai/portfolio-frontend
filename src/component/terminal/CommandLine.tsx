@@ -22,7 +22,7 @@ export default function CommandLine({
   useEffect(() => {
     if (commandHistoryIndex == commands.length && !disabled) {
       setCommandState("");
-    } else {
+    } else if (!disabled) {
       setCommandState(commands[commandHistoryIndex]);
     }
     return () => {};
